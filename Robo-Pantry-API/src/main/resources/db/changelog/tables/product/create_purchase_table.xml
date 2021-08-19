@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="create_purchase_table" author="dmiska">
+        <createTable tableName="purchase">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="product_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_variant_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="products_purchased" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="purchase" baseColumnNames="product_id" constraintName="product_foreign_key"
+                referencedTableName="product" referencedColumnNames="id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint
+                baseTableName="purchase" baseColumnNames="product_variant_id" constraintName="product_variant_foreign_key"
+                referencedTableName="product_variant" referencedColumnNames="id" onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

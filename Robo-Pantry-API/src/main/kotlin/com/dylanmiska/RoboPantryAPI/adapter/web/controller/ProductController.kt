@@ -1,9 +1,11 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.controller
 
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.ProductCreateRequest
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.ProductUpdateRequest
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.EmbeddedProductRequest
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.ProductRequest
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.toModel
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductListResponse
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductResponse
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.toListResponse
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.toResponse
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.FindProductUseCase
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.ManageProductUseCase
@@ -19,8 +21,8 @@ class ProductController(
         private val manageProductUseCase: ManageProductUseCase
 ) {
     @GetMapping("/products")
-    fun getProductListing(): List<ProductResponse> {
-        return findProductUseCase.findAll().map(Product::toResponse)
+    fun getProductListing(): List<ProductListResponse> {
+        return findProductUseCase.findAll().map(Product::toListResponse)
     }
 
     @GetMapping("/products/{id}")
@@ -32,26 +34,8 @@ class ProductController(
     @PostMapping("/products")
     fun createProduct(
         @RequestBody
-        productRequest: ProductCreateRequest
-    ): ProductResponse {
-        return manageProductUseCase.create(
-                productRequest.toModel()
-        ).toResponse()
-    }
-
-    @PutMapping("/products")
-    fun updateProduct(
-        @RequestBody
-        productRequest: ProductUpdateRequest
-    ): ProductResponse {
-        return manageProductUseCase.update(
-            productRequest.toModel()
-        ).toResponse()
-    }
-
-    @DeleteMapping("/products/{id}")
-    fun deleteProduct(@PathVariable id: Int): ProductResponse {
-        return manageProductUseCase.delete(id)
-            .toResponse()
+        EmbeddedProductRequest: EmbeddedProductRequest
+    ) {
+        manageProductUseCase.create(EmbeddedProductRequest.toModel())
     }
 }

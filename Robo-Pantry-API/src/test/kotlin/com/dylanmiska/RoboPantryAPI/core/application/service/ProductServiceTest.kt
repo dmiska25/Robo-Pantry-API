@@ -1,8 +1,8 @@
 package com.dylanmiska.RoboPantryAPI.core.application.service
 
+import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import com.dylanmiska.RoboPantryAPI.core.application.port.out.ProductPort
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
-import com.dylanmiska.RoboPantryAPI.core.domain.model.UnitOfMeasure
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeAll
@@ -21,7 +21,7 @@ internal class ProductServiceTest {
         id = 1,
         name = "test",
         purchaseDate = Date(1627855592),
-        quantity = 1.0,
+        unitsOnHand = 1.0,
         unitOfMeasure = UnitOfMeasure.UNIT,
         barcode = 12345
     )

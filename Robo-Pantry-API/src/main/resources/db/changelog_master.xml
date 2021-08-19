@@ -10,5 +10,8 @@
 
     <include relativeToChangelogFile="true" file="changelog/sequences/create_hibernate_sequence.xml"/>
     <include relativeToChangelogFile="true" file="changelog/tables/product/create_product_table.xml"/> <!-- 1 -->
+    <include relativeToChangelogFile="true" file="changelog/tables/product/create_product_variant_table.xml"/> <!-- 1 -->
+    <include relativeToChangelogFile="true" file="changelog/tables/product/create_purchase_table.xml"/> <!-- 1 -->
+    <include relativeToChangelogFile="true" file="changelog/tables/product/create_expired_table.xml"/> <!-- 1 -->
 
 </databaseChangeLog>

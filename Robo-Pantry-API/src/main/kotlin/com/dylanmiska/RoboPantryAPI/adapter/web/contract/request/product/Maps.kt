@@ -1,20 +1,21 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product
 
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.productVariant.toModel
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.purchase.toModel
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
+import com.dylanmiska.RoboPantryAPI.core.domain.model.ProductVariant
 
-fun ProductUpdateRequest.toModel(): Product = Product(
+fun ProductRequest.toModel(productVariant: ProductVariant): Product = Product(
     id = id,
     name = name,
-    purchaseDate = purchaseDate,
-    quantity = quantity,
+    category = category,
     unitOfMeasure = unitOfMeasure,
-    barcode = barcode
+    productVariants = listOf(productVariant)
 )
 
-fun ProductCreateRequest.toModel(): Product = Product(
-    name = name,
-    purchaseDate = purchaseDate,
-    quantity = quantity,
-    unitOfMeasure = unitOfMeasure,
-    barcode = barcode
-)
+fun EmbeddedProductRequest.toModel(): Product =
+    product.toModel(
+        productVariant.toModel(
+            purchase.toModel()
+        )
+    )
