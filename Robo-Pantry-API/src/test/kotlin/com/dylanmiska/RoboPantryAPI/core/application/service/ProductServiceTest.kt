@@ -1,5 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.core.application.service
 
+import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
 import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import com.dylanmiska.RoboPantryAPI.core.application.port.out.ProductPort
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
@@ -20,10 +21,10 @@ internal class ProductServiceTest {
     private val constProduct = Product(
         id = 1,
         name = "test",
-        purchaseDate = Date(1627855592),
         unitsOnHand = 1.0,
         unitOfMeasure = UnitOfMeasure.UNIT,
-        barcode = 12345
+        category = ProductCategory.BEVERAGE,
+        productVariants = listOf()
     )
 
     private val newProduct = constProduct.copy(id = null)
@@ -49,22 +50,22 @@ internal class ProductServiceTest {
 
     @Test
     fun create() {
-        every { gateway.create(newProduct) } returns constProduct
+        every { gateway.create(newProduct) } returns Unit
         val result = service.create(newProduct)
-        assertEquals("expected and actual create result do not match!", constProduct, result)
+        assertEquals("expected and actual create result do not match!", Unit, result)
     }
 
     @Test
     fun update() {
-        every { gateway.update(constProduct) } returns constProduct
+        every { gateway.update(constProduct) } returns Unit
         val result = service.update(constProduct)
-        assertEquals("expected and actual update result do not match!", constProduct, result)
+        assertEquals("expected and actual update result do not match!", Unit, result)
     }
 
     @Test
     fun delete() {
-        every { gateway.delete(1) } returns constProduct
+        every { gateway.delete(1) } returns Unit
         val result = service.delete(1)
-        assertEquals("expected and actual delete result do not match!", constProduct, result)
+        assertEquals("expected and actual delete result do not match!", Unit, result)
     }
 }
