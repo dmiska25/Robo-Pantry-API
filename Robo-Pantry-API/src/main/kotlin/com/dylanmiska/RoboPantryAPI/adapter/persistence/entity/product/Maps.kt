@@ -12,9 +12,11 @@ fun ProductEntity.toModel(): Product = Product(
     unitsOnHand = unitsOnHand,
     unitOfMeasure = unitOfMeasure,
     category = category,
-    productVariants = productVariants
-        .map(ProductVariantEntity::toModel)
+    productVariants = productVariantsToModel()
 )
+
+fun ProductEntity.productVariantsToModel(): List<ProductVariant> =
+    productVariants.map(ProductVariantEntity::toModel)
 
 fun ProductEntity.toListingModel(): Product = Product(
     id = id,
@@ -35,7 +37,10 @@ fun Product.toEntity(): ProductEntity {
         productVariants = mutableListOf()
     )
     product.productVariants.addAll(
-        productVariants.map { it.toEntity(product) }
+        productVariantsToEntites(product)
     )
     return product
 }
+
+fun Product.productVariantsToEntites(product: ProductEntity): List<ProductVariantEntity> =
+    productVariants.map { it.toEntity(product) }

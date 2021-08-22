@@ -20,7 +20,6 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -31,6 +30,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.mockk:mockk:1.12.0")
 	testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.24")
+	implementation("com.h2database:h2")
 //  spring security
 //	implementation("org.springframework.boot:spring-boot-starter-security")
 //	testImplementation("org.springframework.security:spring-security-test")

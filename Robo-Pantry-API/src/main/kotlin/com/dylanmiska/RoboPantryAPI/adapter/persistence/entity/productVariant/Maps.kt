@@ -15,8 +15,11 @@ fun ProductVariantEntity.toModel(): ProductVariant = ProductVariant(
     productsOnHand = productsOnHand,
     unitsPerProduct = unitsPerProduct,
     barcode = barcode,
-    purchases = purchases.map(PurchaseEntity::toModel)
+    purchases = purchasesToModel()
 )
+
+fun ProductVariantEntity.purchasesToModel(): List<Purchase> =
+    purchases.map(PurchaseEntity::toModel)
 
 fun ProductVariant.toEntity(product: ProductEntity): ProductVariantEntity {
     val productVariant = ProductVariantEntity(
@@ -28,8 +31,10 @@ fun ProductVariant.toEntity(product: ProductEntity): ProductVariantEntity {
         barcode = barcode,
         purchases = mutableListOf()
     )
-    productVariant.purchases.addAll(
-        purchases.map{ it.toEntity(product, productVariant) }
-    )
+    productVariant.purchases.addAll(purchasesToEntities(product, productVariant))
     return productVariant
 }
+
+fun ProductVariant.purchasesToEntities(product: ProductEntity,productVariant: ProductVariantEntity): List<PurchaseEntity> =
+    purchases.map{ it.toEntity(product, productVariant) }
+
