@@ -2,8 +2,11 @@ package com.dylanmiska.RoboPantryAPI.adapter.persistence.repository
 
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.dao.ProductDAO
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.toEntity
+import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.productVariant.ProductVariantEntity
+import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
 import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
+import com.dylanmiska.RoboPantryAPI.core.domain.model.ProductVariant
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeAll
@@ -26,14 +29,15 @@ internal class ProductRepositoryTest {
     private val constProduct = Product(
         id = 1,
         name = "test",
-        purchaseDate = Date(1627855592),
         unitsOnHand = 1.0,
         unitOfMeasure = UnitOfMeasure.UNIT,
-        barcode = 12345
+        category = ProductCategory.BEVERAGE,
+        productVariants = listOf()
     )
     private val constNewProduct = constProduct.copy(id = null)
     private val constProductEntity = constProduct.toEntity()
     private val constNewProductEntity = constProductEntity.copy(id = null)
+    private val unitResponse = Unit
 
 
 
@@ -55,21 +59,20 @@ internal class ProductRepositoryTest {
     fun create() {
         every { dao.save(constNewProductEntity) } returns constProductEntity
         val result = repository.create(constNewProduct)
-        assertEquals("expected and actual create result do not match!", constProduct, result)
+        assertEquals("expected and actual create result do not match!", unitResponse, result)
     }
 
     @Test
     fun update() {
         every { dao.save(constProductEntity) } returns constProductEntity
         val result = repository.update(constProduct)
-        assertEquals("expected and actual update result do not match!", constProduct, result)
+        assertEquals("expected and actual update result do not match!", unitResponse, result)
     }
 
     @Test
     fun delete() {
-        every { dao.getById(1) } returns constProductEntity
         every { dao.deleteById(1) } returns Unit
         val result = repository.delete(1)
-        assertEquals("expected and actual delete result do not match!", constProduct, result)
+        assertEquals("expected and actual delete result do not match!", unitResponse, result)
     }
 }
