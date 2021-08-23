@@ -11,6 +11,7 @@ import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.FindProdu
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.ManageProductUseCase
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 
@@ -21,21 +22,26 @@ class ProductController(
         private val manageProductUseCase: ManageProductUseCase
 ) {
     @GetMapping("/products")
-    fun getProductListing(): List<ProductListResponse> {
-        return findProductUseCase.findAll().map(Product::toListResponse)
+    fun getProductListing(): ResponseEntity<List<ProductListResponse>> {
+        return ResponseEntity.ok(
+            findProductUseCase.findAll().map(Product::toListResponse)
+        )
     }
 
     @GetMapping("/products/{id}")
-    fun getProduct(@PathVariable id: Int): ProductResponse {
-        return findProductUseCase.find(id)?.toResponse() ?:
-        throw ResponseStatusException(HttpStatus.BAD_REQUEST)
+    fun getProduct(@PathVariable id: Int): ResponseEntity<ProductResponse> {
+        return ResponseEntity.ok(
+            findProductUseCase.find(id)?.toResponse() ?:
+                throw ResponseStatusException(HttpStatus.BAD_REQUEST)
+        )
     }
 
     @PostMapping("/products")
     fun createProduct(
         @RequestBody
         EmbeddedProductRequest: EmbeddedProductRequest
-    ) {
+    ): ResponseEntity<String> {
         manageProductUseCase.create(EmbeddedProductRequest.toModel())
+        return ResponseEntity<String>(HttpStatus.CREATED)
     }
 }
