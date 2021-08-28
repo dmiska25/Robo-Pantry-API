@@ -11,30 +11,20 @@ import com.dylanmiska.RoboPantryAPI.core.domain.model.Purchase
 
 fun ProductVariantEntity.toModel(): ProductVariant = ProductVariant(
     id = id,
+    product = product?.toModel(),
     brand = brand,
     productsOnHand = productsOnHand,
     unitsPerProduct = unitsPerProduct,
     barcode = barcode,
-    purchases = purchasesToModel()
+    purchases = purchases.map(PurchaseEntity::toModel)
 )
 
-fun ProductVariantEntity.purchasesToModel(): List<Purchase> =
-    purchases.map(PurchaseEntity::toModel)
-
-fun ProductVariant.toEntity(product: ProductEntity): ProductVariantEntity {
-    val productVariant = ProductVariantEntity(
+fun ProductVariant.toEntity(): ProductVariantEntity  = ProductVariantEntity(
         id = id,
         brand = brand,
-        product = product,
+        product = product?.toEntity(),
         productsOnHand = productsOnHand,
         unitsPerProduct = unitsPerProduct,
         barcode = barcode,
-        purchases = mutableListOf()
-    )
-    productVariant.purchases.addAll(purchasesToEntities(product, productVariant))
-    return productVariant
-}
-
-fun ProductVariant.purchasesToEntities(product: ProductEntity,productVariant: ProductVariantEntity): List<PurchaseEntity> =
-    purchases.map{ it.toEntity(product, productVariant) }
-
+        purchases = purchases.map(Purchase::toEntity)
+)

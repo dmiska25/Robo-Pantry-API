@@ -26,7 +26,7 @@ data class ProductEntity(
                 fetch = FetchType.LAZY,
                 cascade = [CascadeType.ALL],
                 mappedBy = "product")
-        val productVariants: MutableList<ProductVariantEntity>,
+        var productVariants: MutableList<ProductVariantEntity>,
         @Transient
         var unitsOnHand: Double?
 )

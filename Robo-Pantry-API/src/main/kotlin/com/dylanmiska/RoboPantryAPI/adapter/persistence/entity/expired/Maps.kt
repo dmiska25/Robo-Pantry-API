@@ -4,6 +4,7 @@ import com.dylanmiska.RoboPantryAPI.core.domain.model.Expired
 
 fun ExpiredEntity.toModel(): Expired = Expired(
     id = id,
+    quantityExpired = null,
     reason = reason,
     expiration = expiration
 )

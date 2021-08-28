@@ -15,7 +15,9 @@ class ProductRepository(
 ): ProductPort {
 
     override fun find(id: Int): Product? {
-        return dao.getById(id).toModel()
+        val product = dao.getById(id)
+        return product.toModel()
+//        return dao.getById(id).toModel()
     }
 
     override fun findAll(): List<Product> {

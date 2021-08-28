@@ -16,14 +16,14 @@ data class ProductVariantEntity(
     val id: Int?,
     val brand: String,
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    val product: ProductEntity,
+    @JoinColumn(name = "product_id", nullable = false)
+    val product: ProductEntity?,
     @OneToMany(
         fetch = FetchType.LAZY,
         cascade = [CascadeType.ALL],
         mappedBy = "productVariant"
     )
-    val purchases: MutableList<PurchaseEntity>,
+    var purchases: List<PurchaseEntity>,
     @Transient
     var productsOnHand: Int?,
     @Column(name = "units_per_product")

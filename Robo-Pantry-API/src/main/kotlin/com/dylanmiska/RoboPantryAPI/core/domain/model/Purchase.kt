@@ -6,6 +6,8 @@ import java.util.*
 
 data class Purchase(
     val id: Int? = null,
+    val product: Product? = null,
+    val productVariant: ProductVariant? = null,
     val purchaseDate: Date,
     val productsPurchased: Int,
     val expired: Expired? = null
