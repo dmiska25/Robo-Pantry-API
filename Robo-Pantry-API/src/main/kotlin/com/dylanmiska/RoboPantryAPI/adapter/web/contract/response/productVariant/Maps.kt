@@ -8,6 +8,7 @@ fun ProductVariant.toResponse(): ProductVariantResponse = ProductVariantResponse
     id = id!!,
     brand = brand,
     productsOnHand = productsOnHand!!,
+    unitsPerProduct = unitsPerProduct,
     barcode = barcode,
     purchases = purchases.map(Purchase::toResponse)
 )

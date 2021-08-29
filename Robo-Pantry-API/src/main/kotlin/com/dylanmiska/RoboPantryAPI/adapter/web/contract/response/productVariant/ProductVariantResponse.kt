@@ -3,11 +3,13 @@ package com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.productVarian
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.purchase.PurchaseResponse
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class ProductVariantResponse (
+data class ProductVariantResponse (
     val id: Int,
     val brand: String,
     @JsonProperty("products_on_hand")
     val productsOnHand: Int,
+    @JsonProperty("units_per_product")
+    val unitsPerProduct: Double,
     val purchases: List<PurchaseResponse>,
     val barcode: Int
 )
