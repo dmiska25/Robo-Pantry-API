@@ -24,7 +24,8 @@ class PurchaseRepository(
     }
 
     override fun update(element: Purchase) {
-        dao.save(mapper.toEntity(element))
+        val purchase = mapper.toEntity(element)
+        dao.save(purchase)
     }
 
     override fun delete(id: Int) {
