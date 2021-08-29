@@ -1,35 +1,32 @@
 package com.dylanmiska.RoboPantryAPI.adapter.persistence.repository
 
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.dao.ProductDAO
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductEntity
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.toEntity
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.toListingModel
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.toModel
+import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductMapper
 import com.dylanmiska.RoboPantryAPI.core.application.port.out.ProductPort
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
 import org.springframework.stereotype.Repository
 
 @Repository
 class ProductRepository(
-    private val dao: ProductDAO
+    private val dao: ProductDAO,
+    private val mapper: ProductMapper
 ): ProductPort {
 
     override fun find(id: Int): Product? {
-        val product = dao.getById(id)
-        return product.toModel()
-//        return dao.getById(id).toModel()
+        return mapper.toModel(dao.getById(id))
     }
 
     override fun findAll(): List<Product> {
-        return dao.findAll().map(ProductEntity::toListingModel)
+        return mapper.toListingModel(dao.findAll())
     }
 
     override fun create(element: Product) {
-        dao.save(element.toEntity())
+        val product = mapper.toEntity(element)
+        dao.save(product)
     }
 
     override fun update(element: Product) {
-        dao.save(element.toEntity())
+        dao.save(mapper.toEntity(element))
     }
 
     override fun delete(id: Int) {

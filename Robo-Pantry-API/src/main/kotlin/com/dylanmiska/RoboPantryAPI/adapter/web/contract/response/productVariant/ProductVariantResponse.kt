@@ -1,7 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.productVariant
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.purchase.PurchaseResponse
-import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import com.fasterxml.jackson.annotation.JsonProperty
 
 class ProductVariantResponse (

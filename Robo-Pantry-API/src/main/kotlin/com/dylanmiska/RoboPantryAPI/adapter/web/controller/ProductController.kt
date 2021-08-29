@@ -1,7 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.controller
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.EmbeddedProductRequest
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.ProductRequest
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.toModel
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductListResponse
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductResponse
