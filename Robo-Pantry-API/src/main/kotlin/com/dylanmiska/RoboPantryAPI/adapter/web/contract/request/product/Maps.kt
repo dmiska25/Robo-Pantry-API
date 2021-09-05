@@ -5,17 +5,17 @@ import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.purchase.toMode
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
 import com.dylanmiska.RoboPantryAPI.core.domain.model.ProductVariant
 
-fun ProductRequest.toModel(productVariant: ProductVariant): Product = Product(
+fun ProductRequest.toModel(productVariants: List<ProductVariant>): Product = Product(
     id = id,
     name = name,
     category = category,
     unitOfMeasure = unitOfMeasure,
-    productVariants = listOf(productVariant)
+    productVariants = productVariants
 )
 
 fun EmbeddedProductRequest.toModel(): Product =
-    product.toModel(
-        productVariant.toModel(
+    product.toModel(listOf(
+        productVariant.toModel(listOf(
             purchase.toModel()
-        )
-    )
+        ))
+    ))

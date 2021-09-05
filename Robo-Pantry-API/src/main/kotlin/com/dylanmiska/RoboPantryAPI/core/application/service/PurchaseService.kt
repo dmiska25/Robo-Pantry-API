@@ -14,16 +14,17 @@ class PurchaseService(private val gateway: PurchasePort) : ManagePurchaseUseCase
             bond.purchaseId
                 ?: throw NoSuchElementException("Purchase Id cannot be null!")
         ) ?: throw NoSuchElementException("Purchase with Id ${bond.purchaseId} does not exist!")
+
         // validate quantity purchased
-        Assert.notNull(bond.quantityExpired, "Quantity expired cannot be null!")
         Assert.isTrue(
-            bond.quantityExpired!! > 0 && bond.quantityExpired <= purchase.productsPurchased,
+            bond.quantityExpired > 0 && bond.quantityExpired <= purchase.productsPurchased,
             "Quantity Expired must be within valid range!"
         )
         Assert.isTrue(
             bond.expiration.after(purchase.purchaseDate),
             "Expiration date must be after purchase date!"
         )
+
         // mark purchase as expired
         if (bond.quantityExpired == purchase.productsPurchased) {
             gateway.update(
@@ -31,18 +32,19 @@ class PurchaseService(private val gateway: PurchasePort) : ManagePurchaseUseCase
                     expired = bond
                 )
             )
-        // chase quantity purchased and mark purchase as expired, create second purchase record without expiration bond
+
+        // change quantity purchased for purchase and persist, then create second purchase record with expiration bond
         } else {
             gateway.update(
                 purchase.copy(
-                    productsPurchased = bond.quantityExpired,
-                    expired = bond
+                    productsPurchased = purchase.productsPurchased-bond.quantityExpired
                 )
             )
             gateway.create(
                 purchase.copy(
                     id = null,
-                    productsPurchased = purchase.productsPurchased-bond.quantityExpired
+                    productsPurchased = bond.quantityExpired,
+                    expired = bond
                 )
             )
         }

@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 @ExtendWith(SpringExtension::class)
@@ -144,7 +143,7 @@ class ProductControllerTest(
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(requestBody)
         )
-            .andExpect(status().isOk)
+            .andExpect(status().isCreated)
             .andReturn()
 
         assertEquals("", expectedResponse, result.response.contentAsString)

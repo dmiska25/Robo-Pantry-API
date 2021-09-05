@@ -9,7 +9,6 @@ import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.productVariant.Pr
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Purchase
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class PurchaseMapper(private val productDAO: ProductDAO, private val productVariantDAO: ProductVariantDAO) {
@@ -45,6 +44,6 @@ class PurchaseMapper(private val productDAO: ProductDAO, private val productVari
         productVariantId = purchaseEntity.productVariant.id!!,
         purchaseDate = purchaseEntity.purchaseDate,
         productsPurchased = purchaseEntity.productsPurchased,
-        expired = purchaseEntity.expired?.toModel()
+        expired = purchaseEntity.expired?.toModel(purchaseEntity.productsPurchased)
     )
 }

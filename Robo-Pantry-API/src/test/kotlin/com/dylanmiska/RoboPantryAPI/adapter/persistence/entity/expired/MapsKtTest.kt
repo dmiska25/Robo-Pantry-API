@@ -1,9 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.expired
 
 
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.expired.ExpiredEntity
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.expired.toEntity
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.expired.toModel
 import com.dylanmiska.RoboPantryAPI.common.enums.ExpirationReason
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Expired
 import org.junit.jupiter.api.Test
@@ -20,13 +17,14 @@ class MapsKtTest {
     val expiredModel = Expired(
         id = 0,
         reason = ExpirationReason.EXPIRED,
+        quantityExpired = 5,
         expiration = Date(35467354673)
     )
 
     @Test
     fun toModel() {
         val expected = expiredModel
-        val actual = expiredEntity.toModel()
+        val actual = expiredEntity.toModel(5)
 
         assertEquals("to model expected doesn't match", expected, actual)
     }

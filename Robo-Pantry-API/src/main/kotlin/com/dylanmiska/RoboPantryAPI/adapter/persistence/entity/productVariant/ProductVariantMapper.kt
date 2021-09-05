@@ -4,9 +4,7 @@ import com.dylanmiska.RoboPantryAPI.adapter.persistence.dao.ProductDAO
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductEntity
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.purchase.PurchaseMapper
 import com.dylanmiska.RoboPantryAPI.core.domain.model.ProductVariant
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class ProductVariantMapper(private val productDAO: ProductDAO, private val purchaseMapper: PurchaseMapper) {
