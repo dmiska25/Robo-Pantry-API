@@ -19,11 +19,10 @@ class ProductVariantMapper(private val productDAO: ProductDAO, private val purch
             barcode = productVariant.barcode,
             purchases = listOf()
         )
-        return productVariantEntity.copy(
-            purchases = purchaseMapper.listToEntityList(productVariant.purchases, productVariantEntity, productEntity)
-        )
+        productVariantEntity.purchases =
+            purchaseMapper.listToEntityList(productVariant.purchases, productVariantEntity, productEntity)
+        return productVariantEntity
     }
-
 
     fun listToEntityList(productVariants: List<ProductVariant>, productEntity: ProductEntity): List<ProductVariantEntity> {
         return productVariants.map {
@@ -49,6 +48,6 @@ class ProductVariantMapper(private val productDAO: ProductDAO, private val purch
         productsOnHand = productVariantEntity.productsOnHand,
         unitsPerProduct = productVariantEntity.unitsPerProduct,
         barcode = productVariantEntity.barcode,
-        purchases = productVariantEntity.purchases.map{ purchaseMapper.toModel(it) }
+        purchases = purchaseMapper.listToModelList(productVariantEntity.purchases)
     )
 }

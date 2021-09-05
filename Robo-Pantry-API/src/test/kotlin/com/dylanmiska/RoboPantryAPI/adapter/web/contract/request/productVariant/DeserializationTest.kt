@@ -1,16 +1,10 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.productVariant
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.generics.BaseDeserializationTest
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.ProductRequest
-import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
-import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.boot.test.autoconfigure.json.JsonTest
-import org.springframework.test.util.AssertionErrors.assertEquals
-import java.lang.Exception
-import kotlin.math.exp
 
 @JsonTest
 internal class DeserializationTest: BaseDeserializationTest<ProductVariantRequest>(ProductVariantRequest::class.java) {

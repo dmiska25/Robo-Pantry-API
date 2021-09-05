@@ -1,11 +1,8 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.productVariant
 
 import com.dylanmiska.RoboPantryAPI.core.domain.model.ProductVariant
-import io.mockk.every
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.springframework.test.util.AssertionErrors.assertEquals
-import kotlin.math.exp
 
 internal class MapsKtTest {
     val productVariantRequest = ProductVariantRequest(

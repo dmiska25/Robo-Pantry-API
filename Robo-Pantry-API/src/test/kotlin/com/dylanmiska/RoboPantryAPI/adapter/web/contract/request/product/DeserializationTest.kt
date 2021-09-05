@@ -1,8 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product
 
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.expired.ExpirationRequest
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.generics.BaseDeserializationTest
-import com.dylanmiska.RoboPantryAPI.common.enums.ExpirationReason
 import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
 import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import org.springframework.boot.test.autoconfigure.json.JsonTest

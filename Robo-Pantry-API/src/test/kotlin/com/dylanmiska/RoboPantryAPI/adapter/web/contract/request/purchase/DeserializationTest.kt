@@ -1,7 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.purchase
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.generics.BaseDeserializationTest
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.productVariant.ProductVariantRequest
 import org.springframework.boot.test.autoconfigure.json.JsonTest
 
 @JsonTest

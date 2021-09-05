@@ -46,4 +46,9 @@ class PurchaseMapper(private val productDAO: ProductDAO, private val productVari
         productsPurchased = purchaseEntity.productsPurchased,
         expired = purchaseEntity.expired?.toModel(purchaseEntity.productsPurchased)
     )
+
+    fun listToModelList(purchases: List<PurchaseEntity>): List<Purchase> =
+        purchases.map {
+            this.toModel(it)
+        }
 }

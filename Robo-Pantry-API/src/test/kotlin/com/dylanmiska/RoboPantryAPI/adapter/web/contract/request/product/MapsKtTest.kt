@@ -1,7 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.productVariant.ProductVariantRequest
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.productVariant.toModel
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.purchase.PurchaseRequest
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.purchase.toModel
 import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
@@ -13,7 +12,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.test.util.AssertionErrors.assertEquals

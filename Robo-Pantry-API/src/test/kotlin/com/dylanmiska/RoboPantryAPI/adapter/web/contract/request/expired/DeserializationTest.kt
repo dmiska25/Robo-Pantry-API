@@ -2,12 +2,7 @@ package com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.expired
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.generics.BaseDeserializationTest
 import com.dylanmiska.RoboPantryAPI.common.enums.ExpirationReason
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.json.JsonTest
-import org.springframework.boot.test.json.JacksonTester
-import java.text.SimpleDateFormat
-import java.util.*
 
 @JsonTest
 internal class DeserializationTest : BaseDeserializationTest<ExpirationRequest>(ExpirationRequest::class.java) {
