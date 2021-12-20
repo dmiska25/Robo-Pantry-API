@@ -7,23 +7,17 @@
            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
 
     <changeSet id="create_product_table" author="dmiska">
-        <createTable tableName="product_entity">
+        <createTable tableName="product">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
-            <column name="purchase_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="quantity" type="double">
+            <column name="category" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="unit_of_measure" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="barcode" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>

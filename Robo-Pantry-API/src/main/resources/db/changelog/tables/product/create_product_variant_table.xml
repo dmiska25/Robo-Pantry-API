@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="create_product_variant_table" author="dmiska">
+        <createTable tableName="product_variant">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="units_per_product" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="barcode" type="int">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="product_variant" baseColumnNames="product_id" constraintName="product_foreign_key"
+                referencedTableName="product" referencedColumnNames="id" onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

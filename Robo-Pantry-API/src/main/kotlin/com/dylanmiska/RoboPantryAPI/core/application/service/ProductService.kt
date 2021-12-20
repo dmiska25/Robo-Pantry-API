@@ -18,16 +18,16 @@ class ProductService(
         return productGateway.find(id)
     }
 
-    override fun create(product: Product): Product {
-        return productGateway.create(product)
+    override fun create(element: Product) {
+        productGateway.create(element)
     }
 
-    override fun update(product: Product): Product {
-        return productGateway.update(product)
+    override fun update(element: Product) {
+        productGateway.update(element)
     }
 
-    override fun delete(id: Int): Product {
-        return productGateway.delete(id)
+    override fun delete(id: Int) {
+        productGateway.delete(id)
     }
 
 }
