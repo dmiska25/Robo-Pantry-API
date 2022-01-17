@@ -2,10 +2,7 @@ package com.dylanmiska.RoboPantryAPI.adapter.web.controller
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.EmbeddedProductRequest
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.toModel
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductListResponse
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductResponse
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.toListResponse
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.toResponse
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.*
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.FindProductUseCase
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.ManageProductUseCase
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
@@ -21,9 +18,9 @@ class ProductController(
         private val manageProductUseCase: ManageProductUseCase
 ) {
     @GetMapping("/products")
-    fun getProductListing(): ResponseEntity<List<ProductListResponse>> {
+    fun getProductListing(): ResponseEntity<ProductListWrapperResponse> {
         return ResponseEntity.ok(
-            findProductUseCase.findAll().map(Product::toListResponse)
+            ProductListWrapperResponse(findProductUseCase.findAll().map(Product::toListResponse))
         )
     }
 
