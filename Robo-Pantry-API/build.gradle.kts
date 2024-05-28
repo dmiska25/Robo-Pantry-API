@@ -51,9 +51,7 @@ dependencies {
 this.loadProperties()
 
 fun loadProperties() {
-	val environment = if (hasProperty("env"))
-		property("env").toString()
-	else "local"
+	val environment = System.getenv("system_env") ?: "local"
 
 	val configFile = when (environment) {
 		"dev" -> file("config.remote.groovy")
