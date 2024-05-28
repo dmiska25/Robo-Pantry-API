@@ -43,6 +43,7 @@ dependencies {
 	liquibaseRuntime("ch.qos.logback:logback-classic:1.5.6")
 	liquibaseRuntime("ch.qos.logback:logback-core:1.5.6")
 	liquibaseRuntime("org.postgresql:postgresql")
+	liquibaseRuntime("info.picocli:picocli:4.7.6")
 	liquibaseRuntime("org.liquibase:liquibase-core:4.28.0")
 	liquibaseRuntime(sourceSets.getByName("main").output)
 }
@@ -55,7 +56,7 @@ fun loadProperties() {
 	else "local"
 
 	val configFile = when (environment) {
-		"dev", "qa", "uat" -> file("config.remote.groovy")
+		"dev" -> file("config.remote.groovy")
 		else -> file("config.groovy")
 	}
 
