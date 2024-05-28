@@ -7,7 +7,7 @@ import com.dylanmiska.RoboPantryAPI.core.domain.model.Purchase
 import org.springframework.stereotype.Repository
 
 @Repository
-class PurchaseRepository(
+open class PurchaseRepository(
     private val dao: PurchaseDAO,
     private val mapper: PurchaseMapper
 ): PurchasePort {

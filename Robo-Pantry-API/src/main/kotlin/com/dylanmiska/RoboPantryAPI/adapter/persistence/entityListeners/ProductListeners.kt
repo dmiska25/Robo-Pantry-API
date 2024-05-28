@@ -2,9 +2,9 @@ package com.dylanmiska.RoboPantryAPI.adapter.persistence.entityListeners
 
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.dao.PurchaseDAO
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductEntity
+import jakarta.persistence.PostLoad
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import javax.persistence.PostLoad
 
 
 @Component

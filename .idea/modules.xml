@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Robo-Pantry-API.iml" filepath="$PROJECT_DIR$/.idea/Robo-Pantry-API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Robo-Pantry-API.Robo-Pantry-API.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/Robo-Pantry-API.Robo-Pantry-API.main~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Robo-Pantry-API.Robo-Pantry-API.test~1.iml" filepath="$PROJECT_DIR$/.idea/modules/Robo-Pantry-API.Robo-Pantry-API.test~1.iml" />
     </modules>
   </component>
 </project>

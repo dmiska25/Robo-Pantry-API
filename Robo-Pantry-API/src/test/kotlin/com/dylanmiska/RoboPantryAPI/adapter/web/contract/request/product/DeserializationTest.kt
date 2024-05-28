@@ -12,7 +12,7 @@ internal class DeserializationTest: BaseDeserializationTest<ProductRequest>(Prod
         {
           "id": 1,
           "product_name": "Root Beer",
-          "category": "BEVERAGE",
+          "category": "beverage",
           "unit_of_measure": "oz"
         }
     """.trimIndent()

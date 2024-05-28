@@ -7,7 +7,7 @@ import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
 import org.springframework.stereotype.Repository
 
 @Repository
-class ProductRepository(
+open class ProductRepository(
     private val dao: ProductDAO,
     private val mapper: ProductMapper
 ): ProductPort {

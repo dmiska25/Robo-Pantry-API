@@ -3,9 +3,9 @@ package com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.purchase
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.expired.ExpiredEntity
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductEntity
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.productVariant.ProductVariantEntity
+import jakarta.persistence.*
 import org.hibernate.annotations.Where
 import java.util.*
-import javax.persistence.*
 
 @Entity
 @Table(name = "purchase")
@@ -27,4 +27,6 @@ data class PurchaseEntity(
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "expired_id")
     val expired: ExpiredEntity?
-)
+) {
+    constructor() : this(-1, ProductEntity(), ProductVariantEntity(), Date(), -1, null)
+}

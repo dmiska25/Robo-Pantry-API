@@ -3,8 +3,8 @@ package com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.productVariant
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductEntity
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.purchase.PurchaseEntity
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entityListeners.ProductVarientListeners
+import jakarta.persistence.*
 import org.hibernate.annotations.NaturalId
-import javax.persistence.*
 
 @Entity
 @EntityListeners(ProductVarientListeners::class)
@@ -29,4 +29,6 @@ data class ProductVariantEntity(
     val unitsPerProduct: Double,
     @NaturalId
     val barcode: Int
-)
+) {
+    constructor(): this(-1, ProductEntity(), "", listOf(), -1, -1.0, -1)
+}

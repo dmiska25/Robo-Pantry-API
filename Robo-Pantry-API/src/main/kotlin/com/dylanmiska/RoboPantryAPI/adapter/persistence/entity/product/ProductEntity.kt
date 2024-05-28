@@ -4,8 +4,8 @@ import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.productVariant.Pr
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entityListeners.ProductListeners
 import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
 import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
+import jakarta.persistence.*
 import org.hibernate.annotations.NaturalId
-import javax.persistence.*
 import kotlin.jvm.Transient
 
 @Entity
@@ -29,6 +29,7 @@ data class ProductEntity(
         var productVariants: List<ProductVariantEntity>,
         @Transient
         var unitsOnHand: Double?
-)
-
+) {
+        constructor() : this(-1, "", ProductCategory.BEVERAGE, UnitOfMeasure.UNIT, listOf(), -1.0)
+}
 

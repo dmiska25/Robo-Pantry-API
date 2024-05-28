@@ -78,7 +78,7 @@ class ProductControllerTest(
     @Test
     fun getProductListing() {
         /*language=json*/
-        val expectedResponse = """[{"id":0,"product_name":"Root Beer","units_on_hand":1.0,"unit_of_measure":"oz"}]"""
+        val expectedResponse = """{"products":[{"id":0,"name":"Root Beer","category":"beverage","units_on_hand":1.0,"unit_of_measure":"oz"}]}"""
 
         every { find.findAll() } returns listOf<Product>(productModel)
 
@@ -92,7 +92,7 @@ class ProductControllerTest(
     @Test
     fun getProduct() {
         /*language=json*/
-        val expectedResponse = """{"id":0,"product_name":"Root Beer","units_on_hand":1.0,"unit_of_measure":"oz","product_variants":[]}"""
+        val expectedResponse = """{"product":{"id":0,"name":"Root Beer","category":"beverage","units_on_hand":1.0,"unit_of_measure":"oz","product_variants":[]}}"""
 
         every { find.find(0) } returns productModel
 
@@ -109,14 +109,12 @@ class ProductControllerTest(
 
         every { manage.create(newProductModel) } returns Unit
 
-        print(newProductModel)
-
         /*language=json*/
         val requestBody = """
         {
             "product": {
                 "product_name": "Root Beer",
-                "category": "BEVERAGE",
+                "category": "beverage",
                 "unit_of_measure": "oz"
             },
             "product_variant": {
@@ -131,13 +129,6 @@ class ProductControllerTest(
         }
         """.trimIndent()
 
-        val str = "Jun 13 2003 23:11:52.454 UTC"
-        val df = SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz")
-        val date = df.parse(str)
-        val epoch = date.time
-        println(epoch) // 1055545912454
-
-
         val result = mockMvc.perform(
                 post("/robo-pantry/products")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -150,5 +141,4 @@ class ProductControllerTest(
     }
 
     // TODO: Implement delete bond test
-
 }

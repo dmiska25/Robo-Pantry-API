@@ -1,45 +1,49 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
-	id("org.springframework.boot") version "2.5.2"
-	id("io.spring.dependency-management") version "1.0.11.RELEASE"
-	kotlin("jvm") version "1.5.20"
-	id("org.liquibase.gradle") version "2.0.4"
-	kotlin("plugin.spring") version "1.5.20"
-	kotlin("plugin.jpa") version "1.5.20"
-	kotlin("plugin.serialization") version "1.5.20"
+	id("org.springframework.boot") version "3.3.0"
+	id("io.spring.dependency-management") version "1.1.5"
+	kotlin("jvm") version "2.0.0"
+	id("org.liquibase.gradle") version "2.2.2"
+	kotlin("plugin.spring") version "2.0.0"
+	kotlin("plugin.jpa") version "2.0.0"
+	kotlin("plugin.serialization") version "2.0.0"
+	id("com.github.ben-manes.versions") version "0.51.0"
+}
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(17))
+	}
 }
 
 group = "com.dylanmiska"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.junit.jupiter:junit-jupiter:5.7.0")
-	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.springframework.boot:spring-boot-starter:3.3.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.3.0")
+	implementation("org.springframework.boot:spring-boot-starter-web:3.3.0")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.0")
+	implementation("org.junit.jupiter:junit-jupiter:5.11.0-M2")
+	implementation("org.postgresql:postgresql:42.7.3")
 	implementation("org.valiktor:valiktor-core:0.12.0")
-// testing
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.mockk:mockk:1.12.0")
-	testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.24")
-	implementation("com.h2database:h2")
-//  spring security
-//	implementation("org.springframework.boot:spring-boot-starter-security")
-//	testImplementation("org.springframework.security:spring-security-test")
-//  liquibase
-	liquibaseRuntime("ch.qos.logback:logback-classic:1.2.3")
-	liquibaseRuntime("ch.qos.logback:logback-core:1.2.3")
+	testImplementation("org.springframework.boot:spring-boot-starter-test:3.3.0")
+	testImplementation("io.mockk:mockk:1.13.11")
+	testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.28.1")
+	implementation("com.h2database:h2:2.2.224")
+	liquibaseRuntime("ch.qos.logback:logback-classic:1.5.6")
+	liquibaseRuntime("ch.qos.logback:logback-core:1.5.6")
 	liquibaseRuntime("org.postgresql:postgresql")
-	liquibaseRuntime("org.liquibase:liquibase-core:3.5.1")
+	liquibaseRuntime("org.liquibase:liquibase-core:4.28.0")
 	liquibaseRuntime(sourceSets.getByName("main").output)
 }
 
@@ -72,10 +76,10 @@ liquibase {
 	}
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
+	compilerOptions {
+		languageVersion.set(KotlinVersion.KOTLIN_2_0)
+		jvmTarget.set(JvmTarget.JVM_17)
 	}
 }
 
