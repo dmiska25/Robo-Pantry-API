@@ -48,33 +48,6 @@ dependencies {
 	liquibaseRuntime(sourceSets.getByName("main").output)
 }
 
-this.loadProperties()
-
-fun loadProperties() {
-	val environment = System.getenv("system_env") ?: "local"
-
-	val configFile = when (environment) {
-		"dev" -> file("config.remote.groovy")
-		else -> file("config.groovy")
-	}
-
-	project.extra["config"] = groovy.util.ConfigSlurper(environment).parse(configFile.readText())
-}
-
-liquibase {
-	val config = (rootProject.extra["config"] as groovy.util.ConfigObject).flatten()
-
-	activities.register("main") {
-		this.arguments = mapOf(
-			"logLevel" to "info",
-			"changeLogFile" to config["spring.datasource.changelog"],
-			"url" to config["spring.datasource.url"],
-			"username" to config["spring.datasource.username"],
-			"password" to config["spring.datasource.password"]
-		)
-	}
-}
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
 	compilerOptions {
 		languageVersion.set(KotlinVersion.KOTLIN_2_0)
