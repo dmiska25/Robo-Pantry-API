@@ -27,6 +27,4 @@ data class PurchaseEntity(
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "expired_id")
     val expired: ExpiredEntity?
-) {
-    constructor() : this(-1, ProductEntity(), ProductVariantEntity(), Date(), -1, null)
-}
+)

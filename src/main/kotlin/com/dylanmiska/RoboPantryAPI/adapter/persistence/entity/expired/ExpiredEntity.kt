@@ -19,6 +19,4 @@ data class ExpiredEntity(
     @Enumerated(EnumType.STRING)
     val reason: ExpirationReason,
     val expiration: Date
-) {
-    constructor() : this(-1, ExpirationReason.EXPIRED, Date())
-}
+)

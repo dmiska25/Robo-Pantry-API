@@ -29,6 +29,4 @@ data class ProductVariantEntity(
     val unitsPerProduct: Double,
     @NaturalId
     val barcode: Int
-) {
-    constructor(): this(-1, ProductEntity(), "", listOf(), -1, -1.0, -1)
-}
+)

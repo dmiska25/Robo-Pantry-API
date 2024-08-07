@@ -29,7 +29,5 @@ data class ProductEntity(
         var productVariants: List<ProductVariantEntity>,
         @Transient
         var unitsOnHand: Double?
-) {
-        constructor() : this(-1, "", ProductCategory.BEVERAGE, UnitOfMeasure.UNIT, listOf(), -1.0)
-}
+)
 
