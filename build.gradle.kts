@@ -40,12 +40,12 @@ dependencies {
 	testImplementation("io.mockk:mockk:1.13.11")
 	testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.28.1")
 	implementation("com.h2database:h2:2.2.224")
-	liquibaseRuntime("ch.qos.logback:logback-classic:1.5.6")
-	liquibaseRuntime("ch.qos.logback:logback-core:1.5.6")
-	liquibaseRuntime("org.postgresql:postgresql")
-	liquibaseRuntime("info.picocli:picocli:4.7.6")
-	liquibaseRuntime("org.liquibase:liquibase-core:4.28.0")
-	liquibaseRuntime(sourceSets.getByName("main").output)
+
+	implementation("ch.qos.logback:logback-classic:1.5.6")
+	implementation("ch.qos.logback:logback-core:1.5.6")
+	implementation("org.postgresql:postgresql")
+	implementation("info.picocli:picocli:4.7.6")
+	implementation("org.liquibase:liquibase-core:4.28.0")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {

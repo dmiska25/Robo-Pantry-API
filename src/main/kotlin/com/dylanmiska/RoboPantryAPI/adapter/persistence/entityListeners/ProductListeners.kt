@@ -22,6 +22,4 @@ class ProductListeners() {
     private fun countQuantity(product: ProductEntity) {
         product.unitsOnHand = purchaseDAO.sumUnitsByProduct(product)
     }
-
-
 }
