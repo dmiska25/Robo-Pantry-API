@@ -1,8 +1,6 @@
 package com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.purchase
 
 import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.expired.ExpiredEntity
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.product.ProductEntity
-import com.dylanmiska.RoboPantryAPI.adapter.persistence.entity.productVariant.ProductVariantEntity
 import jakarta.persistence.*
 import org.hibernate.annotations.Where
 import java.util.*
@@ -12,14 +10,11 @@ import java.util.*
 @Where(clause = "expired_id IS NULL")
 data class PurchaseEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hibernate_seq_gen")
+    @SequenceGenerator(name = "hibernate_seq_gen", sequenceName = "hibernate_sequence", allocationSize = 1)
     val id: Int?,
-    @ManyToOne(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "product_id", nullable = false)
-    val product: ProductEntity,
-    @ManyToOne
-    @JoinColumn(name = "product_variant_id", nullable = false)
-    val productVariant: ProductVariantEntity,
+    @Column(name = "product_id", nullable = false)
+    val productId: Int,
     @Column(name = "purchase_date")
     val purchaseDate: Date,
     @Column(name = "products_purchased")

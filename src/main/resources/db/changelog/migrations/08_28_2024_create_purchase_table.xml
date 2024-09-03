@@ -6,21 +6,27 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
 
-    <changeSet id="create_product_table" author="dmiska">
-        <createTable tableName="product">
+    <changeSet id="create_purchase_table" author="dmiska">
+        <createTable tableName="purchase">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="category" type="varchar(255)">
+            <column name="product_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="unit_of_measure" type="varchar(255)">
+            <column name="purchase_date" type="date">
                 <constraints nullable="false"/>
+            </column>
+            <column name="products_purchased" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired_id" type="int">
+                <constraints nullable="true"/>
             </column>
         </createTable>
+        <addForeignKeyConstraint
+                baseTableName="purchase" baseColumnNames="product_id" constraintName="product_foreign_key"
+                referencedTableName="product" referencedColumnNames="id" onDelete="CASCADE"/>
     </changeSet>
 
 </databaseChangeLog>

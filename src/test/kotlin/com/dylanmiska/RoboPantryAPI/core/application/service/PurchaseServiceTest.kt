@@ -28,7 +28,6 @@ internal class PurchaseServiceTest {
     val purchase = Purchase(
         id = 0,
         productId = 0,
-        productVariantId = 0,
         purchaseDate = Date(34563000),
         productsPurchased = 5
     )
@@ -38,8 +37,8 @@ internal class PurchaseServiceTest {
         service = PurchaseService(gateway)
         every { gateway.find(1) } returns purchase
         every { gateway.find(2) } returns null
-        every { gateway.update(any<Purchase>()) } returns Unit
-        every { gateway.create(any<Purchase>()) } returns Unit
+        every { gateway.update(any<Purchase>()) } returns purchase
+        every { gateway.create(any<Purchase>()) } returns purchase
     }
 
     @AfterEach

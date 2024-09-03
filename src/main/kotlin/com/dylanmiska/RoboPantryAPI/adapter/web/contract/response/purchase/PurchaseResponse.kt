@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.*
 
 data class PurchaseResponse (
+    @JsonProperty("id")
     val id: Int,
     @JsonProperty("purchase_date")
     val purchaseDate: Date,
