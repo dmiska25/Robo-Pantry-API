@@ -5,7 +5,11 @@ import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
 import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonTypeName
 
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
+@JsonTypeName("product")
 data class ProductResponse @JsonCreator constructor(
     @JsonProperty("id") val id: Int,
     @JsonProperty("name") val name: String,
