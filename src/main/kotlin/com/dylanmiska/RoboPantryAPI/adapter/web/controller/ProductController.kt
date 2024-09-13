@@ -2,7 +2,10 @@ package com.dylanmiska.RoboPantryAPI.adapter.web.controller
 
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.EmbeddedProductRequest
 import com.dylanmiska.RoboPantryAPI.adapter.web.contract.request.product.toModel
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.*
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductListWrapperResponse
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.ProductResponse
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.toListResponse
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product.toResponse
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.FindProductUseCase
 import com.dylanmiska.RoboPantryAPI.core.application.port.`in`.product.ManageProductUseCase
 import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
@@ -35,9 +38,9 @@ class ProductController(
     @PostMapping("/products")
     fun createProduct(
         @RequestBody
-        EmbeddedProductRequest: EmbeddedProductRequest
+        embeddedProductRequest: EmbeddedProductRequest
     ): ResponseEntity<String> {
-        manageProductUseCase.create(EmbeddedProductRequest.toModel())
+        manageProductUseCase.create(embeddedProductRequest.toModel())
         return ResponseEntity<String>(HttpStatus.CREATED)
     }
 }

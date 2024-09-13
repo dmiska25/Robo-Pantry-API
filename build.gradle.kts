@@ -39,7 +39,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test:3.3.0")
 	testImplementation("io.mockk:mockk:1.13.11")
 	testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.28.1")
-	implementation("com.h2database:h2:2.2.224")
+	testImplementation("org.testcontainers:postgresql:1.20.0")
 
 	implementation("ch.qos.logback:logback-classic:1.5.6")
 	implementation("ch.qos.logback:logback-core:1.5.6")

@@ -1,39 +1,38 @@
 package com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.product
 
-import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.productVariant.ProductVariantResponse
+import com.dylanmiska.RoboPantryAPI.adapter.web.contract.response.purchase.PurchaseResponse
 import com.dylanmiska.RoboPantryAPI.common.enums.ProductCategory
 import com.dylanmiska.RoboPantryAPI.common.enums.UnitOfMeasure
-import com.dylanmiska.RoboPantryAPI.core.domain.model.Product
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonTypeName
-import kotlin.reflect.KProperty
 
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 @JsonTypeName("product")
-data class ProductResponse(
-    val id: Int,
-    val name: String,
-    val category: ProductCategory,
-    @JsonProperty("units_on_hand")
-    val unitsOnHand: Double,
-    @JsonProperty("unit_of_measure")
-    val unitOfMeasure: UnitOfMeasure,
-    @JsonProperty("product_variants")
-    val productVariants: List<ProductVariantResponse>
+data class ProductResponse @JsonCreator constructor(
+    @JsonProperty("id") val id: Int,
+    @JsonProperty("name") val name: String,
+    @JsonProperty("category") val category: ProductCategory,
+    @JsonProperty("unit_of_measure") val unitOfMeasure: UnitOfMeasure,
+    @JsonProperty("brand") val brand: String,
+    @JsonProperty("products_on_hand") val productsOnHand: Int,
+    @JsonProperty("units_per_product") val unitsPerProduct: Double,
+    @JsonProperty("purchases") val purchases: List<PurchaseResponse>,
+    @JsonProperty("barcode") val barcode: Int
 )
 
-data class ProductListWrapperResponse(
-    val products: List<ProductListResponse>
+data class ProductListWrapperResponse @JsonCreator constructor(
+    @JsonProperty("products") val products: List<ProductListResponse>
 )
 
-data class ProductListResponse(
-    val id: Int,
-    val name: String,
-    val category: ProductCategory,
-    @JsonProperty("units_on_hand")
-    val unitsOnHand: Double,
-    @JsonProperty("unit_of_measure")
-    val unitOfMeasure: UnitOfMeasure,
+data class ProductListResponse @JsonCreator constructor(
+    @JsonProperty("id") val id: Int,
+    @JsonProperty("name") val name: String,
+    @JsonProperty("category") val category: ProductCategory,
+    @JsonProperty("unit_of_measure") val unitOfMeasure: UnitOfMeasure,
+    @JsonProperty("brand") val brand: String,
+    @JsonProperty("products_on_hand") val productsOnHand: Int,
+    @JsonProperty("units_per_product") val unitsPerProduct: Double,
+    @JsonProperty("barcode") val barcode: Int
 )

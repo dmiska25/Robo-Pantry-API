@@ -11,15 +11,21 @@ internal class DeserializationTest: BaseDeserializationTest<ProductRequest>(Prod
     override var jsonObject = """
         {
           "id": 1,
-          "product_name": "Root Beer",
+          "name": "Root Beer",
           "category": "beverage",
-          "unit_of_measure": "oz"
+          "unit_of_measure": "oz",
+          "brand": "A&W",
+          "units_per_product": 2.0,
+          "barcode": 54663262
         }
     """.trimIndent()
     override var expected = ProductRequest(
         id = 1,
         name = "Root Beer",
         category = ProductCategory.BEVERAGE,
-        unitOfMeasure = UnitOfMeasure.OUNCE
+        unitOfMeasure = UnitOfMeasure.OUNCE,
+        brand = "A&W",
+        unitsPerProduct = 2.0,
+        barcode = 54663262
     )
 }

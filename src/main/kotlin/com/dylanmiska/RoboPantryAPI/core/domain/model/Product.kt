@@ -8,6 +8,9 @@ data class Product(
     val name: String,
     val category: ProductCategory,
     val unitOfMeasure: UnitOfMeasure,
-    val productVariants: List<ProductVariant>,
-    val unitsOnHand: Double? = null
+    val brand: String,
+    val purchases: List<Purchase>,
+    val productsOnHand: Int? = null,
+    val unitsPerProduct: Double,
+    val barcode: Int
 )
